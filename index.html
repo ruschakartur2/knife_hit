@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="800" style="background: antiquewhite;margin: 0 auto; display: block"></canvas>
+
+</body>
+<script>
+    window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+            function(callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+    })();
+    let canvas =  document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    let circle = {
+        x : canvas.width / 2,
+        y : canvas.height / 3,
+        r : 100,
+        color : 'red',
+        borderWidth : 5
+    };
+
+    function drawCircle(circle,ctx) {
+        ctx.beginPath();
+        ctx.arc(circle.x,circle.y,circle.r,0,2*Math.PI,false);
+        ctx.fillStyle = circle.color;
+        ctx.lineWidth = circle.borderWidth;
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+    }
+    drawCircle(circle,ctx);
+    let knife = new Image();
+    let knifeX = canvas.width / 2;
+    let knifeY = canvas.height / 1.2;
+    knife.src = 'knife.png';
+    knife.onload = function () {
+        ctx.drawImage(knife,knifeX,knifeY,40,90);
+    };
+
+
+
+</script>
+</html>
